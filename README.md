@@ -9,19 +9,19 @@ Previously, it used to be called Miner Extractable Value, since miners were best
 <Quiz questionId="41da4c35-5b68-4e4d-be8b-4fc97042971b" />
 
 ## What is MEV?
-In a nutshell, it's the concept of extracting value (profit) by making certain types of transactions on chain that are not block rewards themselves. Originally, it started happening because miners had control over which transactions they'd like to include in a block, and in which order. Since when creating a block, miners can include, exclude and change the transactions of the block as they wish, this means they can favor some transactions as compared to others and gain some additional profits by doing so. Note that we are talking about miners right now but things will change after [the merge](https://ethereum.org/en/upgrades/merge/).
+In a nutshell, it's the concept of extracting value (profit) by making certain types of transactions on-chain that are not block rewards themselves. Originally, it started happening because miners had control over which transactions they'd like to include in a block, and in which order. Since when creating a block, miners can include, exclude and change the transactions of the block as they wish, this means they can favor some transactions as compared to others and gain some additional profits by doing so. Note that we are talking about miners right now but things will change after [the merge](https://ethereum.org/en/upgrades/merge/).
 
 Typically, MEV happens when a certain transaction must be included in a certain block (usually the current block) to actually be profitable. Additionally, it sometimes may also need to be in a specific place in the block - for example buying a highly contested NFT drop right after the contract gets deployed, within the same block the contract was deployed, unlike us normies who wait at least until the next block so Metamask recognizes the contract as having been deployed before it sends a transaction out by which time gas price may have gone up significantly.
 
 ## MEV Extraction
-In theory, MEV could only be extracted by miners, and this was true in the early days. With miners having control over block production, they could guarauntee for themselves the execution of a profitable transaction, and just not include the transaction in the block if it didn't turn out to be profitable. Today, however, a large portion of MEV is extracted by independent network participants referred to as `Searchers`. We will learn more about exactly what they do, but in a nutshell they run complex algorithms to find opportunities for profiting on chain and have bots to automatically submit those transactions to the network.
+In theory, MEV could only be extracted by miners, and this was true in the early days. With miners having control over block production, they could guarauntee for themselves the execution of a profitable transaction, and just not include the transaction in the block if it didn't turn out to be profitable. Today, however, a large portion of MEV is extracted by independent network participants referred to as `Searchers`. We will learn more about exactly what they do, but in a nutshell they run complex algorithms to find opportunities for profiting on-chain and have bots to automatically submit those transactions to the network.
 
 Miners still continue to get a portion of the MEV profit made by searchers, as searchers generally tend to pay very high gas fees to try and ensure their transaction is included in the block. We'll look at some example cases shortly.
 
 <Quiz questionId="66588d2f-ecfb-40c2-af1b-a0ee014c8ffd" />
 
 ## Searchers
-`Searchers` are participants which are looking for opportunities to make profitable transactions. These are generally regular users, who can code of course. Miners get benefited from these `Searchers` because "Searchers" usually have to pay very high gas fees to actually be able to make a profitable transaction as the competition is very high. One example that we studied was DEX Arbitrage in our flash loan example. While arbitrage could be done manually, the chances of you succeeding at doing that are miniscule. Searchers run bots to detect arbitrage opportunities on chain, and automatically submit transactions to make profit from such opportunities. Since arbitrage is one of the most common examples of MEV, searchers typically end up paying 90% of their profit to miners in gas fees to be included in the block.
+`Searchers` are participants which are looking for opportunities to make profitable transactions. These are generally regular users, who can code of course. Miners get benefited from these `Searchers` because "Searchers" usually have to pay very high gas fees to actually be able to make a profitable transaction as the competition is very high. One example that we studied was DEX Arbitrage in our flash loan example. While arbitrage could be done manually, the chances of you succeeding at doing that are miniscule. Searchers run bots to detect arbitrage opportunities on-chain, and automatically submit transactions to make profit from such opportunities. Since arbitrage is one of the most common examples of MEV, searchers typically end up paying 90% of their profit to miners in gas fees to be included in the block.
 
 This had led to the rise of research in the field of **Gas Golfing** - a fancy word for making minor optimizations to smart contracts and execution to try to minimize gas cost as much as possible, which allows Searchers to increase their gas price while lowering the gas fees thereby ending up with the same amount of total ETH paid for gas. 
 
@@ -60,7 +60,7 @@ We have discussed arbitrage above, let's look at a few more examples of MEV.
 ### Liquidations
 In DeFi lending protocols, where you can borrow an asset against collateral (for eg borrowing USDC against ETH), there is the concept of liquidation. When you borrow assets against collateral, you can only borrow less money than what your collateral is worth. For example, if I deposit 1 ETH when ETH is $3,000 - I can only borrow less than 3,000 USDC from the lending protocol. Different protocols set different limits, but typically no one lets you borrow 100% of your collateral because that means the smallest price movement in your collateral will affect your borrowed amount.
 
-The closer I get to the upper range of my borrowing amount, the higher chance I have of getting liquidated. There might be a case because of market fluctuations that the value of your borrowed assets exceeds the value of the collateral you supplied, or exceeds the upper limit of how much you were allowed to borrow. In that case, your original collateral is snatched away 
+The closer I get to the upper range of my borrowing amount, the higher chance I have of getting liquidated. There might be a case because of market fluctuations that the value of your borrowed assets exceeds the value of the collateral you supplied, or exceeds the upper limit of how much you were allowed to borrow. In that case, your original collateral is snatched away.
 
 Every protocol has a different percentage but after that percentage is hit, most of the protocols allow anyone from the outside world to liquidate the borrower. Consider this very similar to how if someone doesn't pay the loan on time, their house which they kept as collateral is auctioned by the bank where the bank takes away the original value of the loan + interest and returns back the money which is left over. 
 
@@ -86,7 +86,7 @@ Since searchers add two transactions to the block right before and after the use
 
 Sandwich Attack bots became so rampant with the rise of MEV and Flashbots that special decentralized exchanges had to be made with functionality to prevent exactly this. For example, `mistX` is a DEX that itself submits all trade transactions through Flashbots, thereby bypassing the mempool entirely, which means other Searchers cannot sandwich attack trades happening on `mistX`, though the miner itself still can.
 
-Sandwich Attacks are also a big reason why privacy focused L2's and private trades are a hot topic, as if it is not possible for a Searcher of miner to know who's address is trading what and how much of it, they cannot sandwich that trade.
+Sandwich Attacks are also a big reason why privacy focused L2's and private trades are a hot topic, as if it is not possible for a Searcher or miner to know who's address is trading what and how much of it, they cannot sandwich that trade.
 
 ### Recovering funds from compromised accounts
 Let's look at a use case of Flashbots that is in fact a net positive, and doesn't hurt other legitimate users in the process unlike Sandwich Attacks.
@@ -152,7 +152,7 @@ The miner can evaluate transaction bundles and combine the ones which don't conf
 
 ## eth_sendBundle
 
-Flashbots introduced a new `eth_sendBundle` RPC which is a standard format to interact with the flashbot relayers and miners. It includes array of arbitrary signed Ethereum transactions along with some metadata
+Flashbots introduced a new `eth_sendBundle` RPC which is a standard format to interact with the flashbot relayers and miners. It includes array of arbitrary signed Ethereum transactions along with some metadata.
 
 Here is a list of all the params it takes:
 
