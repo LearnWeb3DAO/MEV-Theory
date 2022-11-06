@@ -27,7 +27,7 @@ This had led to the rise of research in the field of **Gas Golfing** - a fancy w
 
 <Quiz questionId="99e3fc3d-d650-4663-9afb-8780f80e4e6d" />
 
-`Searchers` use the concept of Gas Golfing to be able to program transactions in such a way that they use the least amount of gas. This is because of the formulae `gas fees = gas price * gas used`. So if you decrease your `gas used`, you can increase your `gas price` to arrive at the same `gas fees`. This helps in competitive MEV opportunities as by being able to pay higher gas fees than your competitors means that your chances of getting your transaction included are higher.
+`Searchers` use the concept of Gas Golfing to be able to program transactions in such a way that they use the least amount of gas. This is because of the formula `gas fees = gas price * gas used`. So if you decrease your `gas used`, you can increase your `gas price` to arrive at the same `gas fees`. This helps in competitive MEV opportunities as by being able to pay higher gas fees than your competitors means that your chances of getting your transaction included are higher.
 
 <Quiz questionId="0fa2eec9-9bf3-45a5-84c8-0a911ed4ca23" />
 
